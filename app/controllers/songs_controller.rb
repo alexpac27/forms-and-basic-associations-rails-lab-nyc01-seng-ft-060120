@@ -14,9 +14,10 @@ class SongsController < ApplicationController
   end
 
   def create
-    artist = Artist.find_or_create_by(name: song_params[:artist_name])
-    @song = Song.create(song_params)
-    artist.songs << @song
+    # byebug
+    artist = Artist.find_or_create_by(name: song_params[:artist_name]) #creates an Artist instance
+    @song = Song.create(song_params) #creates a Song instance
+    artist.songs << @song #adds song instance to the collection of the Artist's songs
 
     if @song.valid?
       redirect_to songs_path
